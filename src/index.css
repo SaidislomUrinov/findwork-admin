@@ -3,6 +3,7 @@
     border: none;
     outline: none;
     font-family: "Poppins", serif;
+    backdrop-filter:none !important ;
 }
 @tailwind base;
 @tailwind components;
@@ -16,4 +17,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 4px;
+}
+*::-webkit-scrollbar{
+    display: none;
 }

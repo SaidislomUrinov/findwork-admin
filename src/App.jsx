@@ -5,7 +5,10 @@ import { updateUser } from "./contexts/user";
 import { errorMsg } from "./utils/msg";
 import Auth from "./components/auth";
 import { Toaster } from "react-hot-toast";
-
+import { Route, Routes } from "react-router-dom";
+import Top from "./components/top";
+import Navbar from "./components/navbar";
+import Categories from "./pages/categories";
 function App() {
   const { username } = useSelector(e => e?.user);
   const dp = useDispatch();
@@ -23,7 +26,20 @@ function App() {
   return (
     <>
       {!username && <Auth />}
-      <Toaster containerStyle={{zIndex:'99999'}}/>
+      {username &&
+        <div className="flex items-start justify-center w-full h-[100vh]">
+          <Navbar />
+          <div className="flex items-center justify-start flex-col gap-[10px] w-full lg:w-4/5 h-[100vh]">
+            <Top />
+            <div className="flex items-center pb-[10px] px-[10px] justify-start flex-col h-[100vh] w-full overflow-y-scroll">
+              <Routes>
+                <Route path="/categories" element={<Categories />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      }
+      <Toaster containerStyle={{ zIndex: '99999' }} />
     </>
   )
 }

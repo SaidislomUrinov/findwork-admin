@@ -5,7 +5,8 @@ const user = createSlice({
     initialState: {
         name: "",
         username: "",
-        role: ""//owner, admin
+        role: "",//owner, admin,
+        refresh: false
     },
     reducers: {
         updateUser: (state, { payload }) => {
@@ -15,9 +16,12 @@ const user = createSlice({
             state.username = "";
             state.name = "";
             state.role = "";
+        },
+        runRefresh: (state) => {
+            state.refresh = !state.refresh
         }
     }
 });
 
-export const { updateUser, clearUser } = user.actions;
+export const { updateUser, clearUser, runRefresh } = user.actions;
 export default user.reducer;
